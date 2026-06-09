@@ -1,0 +1,56 @@
+menu "SSD1306 OLED Configuration"
+
+    choice I2C_PORT
+        prompt "I2C Port"
+        default I2C_PORT_0
+        help
+            Select I2C port for OLED communication.
+            
+        config I2C_PORT_0
+            bool "I2C_NUM_0"
+        config I2C_PORT_1
+            depends on IDF_TARGET_ESP32
+            bool "I2C_NUM_1"
+    endchoice
+
+    config SSD1306_SDA_PIN
+        int "SDA GPIO Pin"
+        range 0 48
+        default 21
+        help
+            GPIO pin for I2C SDA (data line).
+            
+    config SSD1306_SCL_PIN
+        int "SCL GPIO Pin"
+        range 0 48
+        default 22
+        help
+            GPIO pin for I2C SCL (clock line).
+            
+    config SSD1306_I2C_ADDR
+        hex "I2C Device Address"
+        range 0x00 0x7F
+        default 0x3C
+        help
+            I2C address of SSD1306 (typically 0x3C or 0x3D).
+            
+    choice SSD1306_PANEL_SIZE
+        prompt "Panel Size"
+        default SSD1306_PANEL_128x64
+        help
+            Select your OLED panel size.
+            
+        config SSD1306_PANEL_128x64
+            bool "128x64 pixels"
+        config SSD1306_PANEL_128x32
+            bool "128x32 pixels"
+    endchoice
+
+    config SSD1306_RESET_PIN
+        int "Reset GPIO Pin (-1 to disable)"
+        range -1 48
+        default -1
+        help
+            Reset pin for SSD1306. Set to -1 if not connected.
+
+endmenu

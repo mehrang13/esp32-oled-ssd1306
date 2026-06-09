@@ -1,0 +1,7 @@
+## IDF Component Manager Manifest File
+version: "1.0.0"
+description: ESP32 SSD1306 OLED Display Driver (I2C)
+url: https://github.com/mehrang13/esp32-oled-ssd1306
+dependencies:
+  idf:
+    version: ">=5.0"
